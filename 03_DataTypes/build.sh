@@ -1,3 +1,4 @@
+FLAGS="-Wall -Wextra -Wpedantic"
 PREF=jni_impl
 
 INC=-I/usr/lib/jvm/java-7-openjdk-amd64/include
@@ -19,7 +20,7 @@ fi
 EE javac JavaNativeInterface.java
 EE javah JavaNativeInterface
 
-EE gcc -fPIC ${INC} ${PREF}.c -c
+EE gcc $FLAGS -fPIC ${INC} ${PREF}.c -c
 EE gcc -shared ${PREF}.o -o ${PREF}.so
 
 echo

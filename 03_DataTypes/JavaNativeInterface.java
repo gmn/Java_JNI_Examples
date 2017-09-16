@@ -6,10 +6,10 @@ public class JavaNativeInterface {
     }
 
     public native long NewContext();
-    public native void FreeContext( long ctx );
-    public native void Print();
-    public native void Push( long handle, String s );
-    public native String GetStr();
+    public native void FreeContext( long handle );
+    public native void Print( long handle );
+    public native String GetStr( long handle );
+    public native void SetStr( long handle, String s );
 
     static void psh( int n ) {
         System.out.println( "(Printing from Java) Square is: " + n );
@@ -17,9 +17,17 @@ public class JavaNativeInterface {
 
     public static void main(String[] args) {
         JavaNativeInterface obj = new JavaNativeInterface();
-        long ctx = obj.NewContext();
-        System.out.println( "Java got : " + Long.toHexString( ctx ) );
-        obj.FreeContext( ctx );
+        long handle = obj.NewContext();
+
+        final String tstr = "This String Created inside JAVA";
+
+        obj.SetStr( handle, tstr );
+        obj.Print( handle );
+        String another = obj.GetStr( handle );
+
+        System.out.println( "Java: \"" + another + "\"" );
+
+        obj.FreeContext( handle );
     }
 }
 
