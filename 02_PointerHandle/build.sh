@@ -1,5 +1,8 @@
 PREF=jni_impl
-INC=-I/usr/lib/jvm/java-8-openjdk-amd64/include
+
+INC=-I/usr/lib/jvm/java-7-openjdk-amd64/include
+INC="$INC ${INC}/linux"
+INC="$INC -I/usr/lib/jvm/java-8-openjdk-amd64/include"
 INC="$INC ${INC}/linux"
 
 function EE() {
