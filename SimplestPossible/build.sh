@@ -20,4 +20,5 @@ EE gcc -fPIC ${INC} ${PREF}.c -c
 EE gcc -shared ${PREF}.o -o ${PREF}.so
 
 echo
+echo -n "running: "
 EE java JavaNativeInterface
